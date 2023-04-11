@@ -14,8 +14,8 @@
 
 
 has_many :items
-belongs_to :history
-has_many :comments
+has_many :histories
+
 
 
 
@@ -34,8 +34,7 @@ has_many :comments
 ＊imageはActiveStorageで実装するため含まない
 
 belongs_to :user
-has_many :comments
-has_many :histories
+belongs_to :history
 
 
 ## _addressesテーブル
@@ -62,13 +61,4 @@ belongs_to :item
 has_one :user
 has_one :address
 
-## _commentsテーブル
 
-| Column           | Type       | Options                        |
-| -------          | ---------- | ------------------------------ |
-| comment(コメント) | string     | null: false,                   |
-| user             | references | null: false, foreign_key: true |
-| item             | references | null: false, foreign_key: true |
-
-belongs_to :user
-belongs_to :item
