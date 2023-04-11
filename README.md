@@ -14,7 +14,7 @@
 
 
 has_many :items
-belongs_to :histor
+has_many :histors
 has_many :comments
 
 
@@ -36,6 +36,7 @@ has_many :comments
 belongs_to :user
 has_one :addres
 has_many :comments
+has_many :histories
 
 
 ## _addressテーブル
@@ -50,7 +51,7 @@ has_many :comments
 | history               | references      | null: false, foreign_key: true |
 
 
-has_one :histor
+belongs_to :histor
 
 ## historiesテーブル
 | Column             | Type           | Options     |
@@ -60,6 +61,8 @@ has_one :histor
 
 belongs_to :item
 belongs_to :user
+has_one :addres
+
 ## _commentsテーブル
 
 | Column           | Type       | Options                        |
