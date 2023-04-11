@@ -9,12 +9,14 @@
 | last_name          | string | null: false |
 | first_name         | string | null: false |
 | kana_last_name     | string | null: false |
-| kana_first _name    | string | null: false |
+| kana_first_name    | string | null: false |
 | date_of_birth      | date    | null: false |
 
 
 has_many :items
+belongs_to :histor
 has_many :comments
+
 
 
 ## _itemsテーブル
@@ -32,7 +34,7 @@ has_many :comments
 ＊imageはActiveStorageで実装するため含まない
 
 belongs_to :user
-belongs_to :address
+has_one :addres
 has_many :comments
 
 
@@ -44,20 +46,20 @@ has_many :comments
 | municipality(市町村)    | string              | null: false |
 | address(番地)          | string               | null: false |
 | building(建物名)        | string               |             |
-| tel(電話番号)            |  integer             | null: false |
-| purchase_histo        | references      | null: false, foreign_key: true |
+| tel(電話番号)            |  string             | null: false |
+| history               | references      | null: false, foreign_key: true |
 
 
-has_one :purchase_histor
+has_one :histor
 
-## purchase_historテーブル
+## historiesテーブル
 | Column             | Type           | Options     |
 | ------------------ | ------       | ----------- |
 | user               | references    | null: false, foreign_key: true |
 | item               | references    | null: false, foreign_key: true |
 
-has_many :item
-has_one :user
+belongs_to :item
+belongs_to :user
 ## _commentsテーブル
 
 | Column           | Type       | Options                        |
