@@ -34,7 +34,7 @@ has_many :histories
 ＊imageはActiveStorageで実装するため含まない
 
 belongs_to :user
-belongs_to :history
+has_one :history
 
 
 ## _addressesテーブル
@@ -58,7 +58,7 @@ belongs_to :history
 | item               | references    | null: false, foreign_key: true |
 
 belongs_to :item
-has_one :user
+belongs_to :user
 has_one :address
 
 
