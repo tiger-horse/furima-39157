@@ -10,7 +10,7 @@
 | first_name         | string | null: false |
 | kana_last_name     | string | null: false |
 | kana_first _name    | string | null: false |
-| date_of_birth      | datetime | null: false |
+| date_of_birth      | date    | null: false |
 
 
 has_many :items
@@ -22,36 +22,42 @@ has_many :comments
 | ------------------------  | ------     | ----------- |
 | item_name(商品名)          | string     | null: false |
 | content(商品説明)          | text       | null: false |
-| category(カテゴリー)        | string     | null: false |
-| item_condition(商品の状態)  | string     | null: false |
-| item_postage(配送料の負担)  | string     | null: false |
-| item_region(地域)         | string     | null: false |
-| item_days(日数)           | string     | null: false |
+| category_id(カテゴリー)     | integer     | null: false |
+| condition_id(商品の状態)   | integer     | null: false |
+| postage_id(配送料の負担)    | integer     | null: false |
+| prefectures_id(地域)       |integer      | null: false |
+| days_id(日数)             | integer     | null: false |
 | price(価格)               | integer    | null: false | 
 | user                     | references | null: false, foreign_key: true |
 ＊imageはActiveStorageで実装するため含まない
 
 belongs_to :user
-belongs_to :buyer
+belongs_to :address
 has_many :comments
 
 
-## _buyerテーブル
-| Column               | Type       | Options     |
-| ------------------   | ------     | ----------- |
-| post_code(郵便番号)     | string     | null: false |
-| prefectures(都道府県)   | string     | null: false |
-| municipality(市町村)    | string     | null: false |
-| address(番地)          | string     | null: false |
-| building(建物名)        | string     |             |
-| tel(電話番号)            | integer     | null: false |
-| user                  | references | null: false, foreign_key: true |
-| item                  | references | null: false, foreign_key: true |
+## _addressテーブル
+| Column               | Type                 | Options     |
+| ------------------   | ------               | ----------- |
+| post_code(郵便番号)     | string              | null: false |
+| prefectures_id(都道府県) | integer            | null: false |
+| municipality(市町村)    | string              | null: false |
+| address(番地)          | string               | null: false |
+| building(建物名)        | string               |             |
+| tel(電話番号)            |  integer             | null: false |
+| purchase_histo        | references      | null: false, foreign_key: true |
 
-has_one :item
+
+has_one :purchase_histor
+
+## purchase_historテーブル
+| Column             | Type           | Options     |
+| ------------------ | ------       | ----------- |
+| user               | references    | null: false, foreign_key: true |
+| item               | references    | null: false, foreign_key: true |
+
+has_many :item
 has_one :user
-
-
 ## _commentsテーブル
 
 | Column           | Type       | Options                        |
