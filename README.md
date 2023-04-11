@@ -14,7 +14,7 @@
 
 
 has_many :items
-has_many :histories
+belongs_to :history
 has_many :comments
 
 
@@ -27,8 +27,8 @@ has_many :comments
 | category_id(カテゴリー)     | integer     | null: false |
 | condition_id(商品の状態)   | integer     | null: false |
 | postage_id(配送料の負担)    | integer     | null: false |
-| prefectures_id(地域)       |integer      | null: false |
-| days_id(日数)             | integer     | null: false |
+| prefecture_id(地域)       |integer      | null: false |
+| scheduled_delivery_id(日数) | integer     | null: false |
 | price(価格)               | integer    | null: false | 
 | user                     | references | null: false, foreign_key: true |
 ＊imageはActiveStorageで実装するため含まない
@@ -38,11 +38,11 @@ has_many :comments
 has_many :histories
 
 
-## _addressテーブル
+## _addressesテーブル
 | Column               | Type                 | Options     |
 | ------------------   | ------               | ----------- |
 | post_code(郵便番号)     | string              | null: false |
-| prefectures_id(都道府県) | integer            | null: false |
+| prefecture_id(都道府県) | integer            | null: false |
 | municipality(市町村)    | string              | null: false |
 | address(番地)          | string               | null: false |
 | building(建物名)        | string               |             |
@@ -59,8 +59,8 @@ belongs_to :history
 | item               | references    | null: false, foreign_key: true |
 
 belongs_to :item
-belongs_to :user
-has_one :addres
+has_one :user
+has_one :address
 
 ## _commentsテーブル
 
