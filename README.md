@@ -14,7 +14,7 @@
 
 
 has_many :items
-has_many :histors
+has_many :histories
 has_many :comments
 
 
@@ -34,7 +34,6 @@ has_many :comments
 ＊imageはActiveStorageで実装するため含まない
 
 belongs_to :user
-has_one :addres
 has_many :comments
 has_many :histories
 
@@ -51,7 +50,7 @@ has_many :histories
 | history               | references      | null: false, foreign_key: true |
 
 
-belongs_to :histor
+belongs_to :history
 
 ## historiesテーブル
 | Column             | Type           | Options     |
