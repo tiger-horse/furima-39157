@@ -1,4 +1,4 @@
-class History < ApplicationRecord
-  belongs_to :item
-  belongs_to :user
-end
+# class History < ApplicationRecord
+#   belongs_to :item
+#   belongs_to :user
+# end
