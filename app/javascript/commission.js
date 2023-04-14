@@ -5,10 +5,10 @@ function commission (){
     const countVal = priceInput.value;
     
     const addTaxDom  = document.getElementById("add-tax-price");
-    addTaxDom.innerHTML = Math.round(countVal * 0.1);
+    addTaxDom.innerHTML = Math.floor(countVal * 0.1);
 
     const profitNum  = document.getElementById("profit");
-    profitNum.innerHTML = Math.round(priceInput.value - addTaxDom.innerHTML);
+    profitNum.innerHTML = Math.floor(priceInput.value - addTaxDom.innerHTML);
   });
 };
 
