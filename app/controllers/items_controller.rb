@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_prototype, only: [:edit, :show]
+  before_action :set_prototype, only: [:edit, :show, :update]
   before_action :move_to_index, only: [:edit, :update]
 
   def index
@@ -27,7 +27,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
@@ -44,13 +43,6 @@ class ItemsController < ApplicationController
 
   def set_prototype
     @item = Item.find(params[:id])
-  end
-
-  def move_to_index
-    @item = Item.find(params[:id])
-    return if user_signed_in? && current_user.id == @prototype.user.id
-
-    redirect_to action: :index
   end
 
   def move_to_index
