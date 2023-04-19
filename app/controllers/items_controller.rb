@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    return if current_user.id == @item.user.id
+    return if current_user.id == @item.user.id && @item.history.nil?
 
     redirect_to action: :index
   end
