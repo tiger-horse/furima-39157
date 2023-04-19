@@ -41,8 +41,7 @@ class HistoriesController < ApplicationController
 
   def move_to_index
     @item = Item.find(params[:item_id])
-    return if current_user.id == @item.user.id && @item.history.nil?
-
+    return unless current_user.id == @item.user.id || @item.history != nil 
     redirect_to root_path
   end
 end
